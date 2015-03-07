@@ -1,8 +1,7 @@
-package uk.ac.cam.dc561;
+package dcultrera.registerMachine;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
     }
 }
