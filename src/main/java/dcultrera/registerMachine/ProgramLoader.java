@@ -10,7 +10,6 @@ public class ProgramLoader {
     public static List<Instruction> loadProgram(String filename) throws IOException, InstructionFormatException {
         List<Instruction> program = new ArrayList<>();
 
-
         try {
             for (String line : Files.readAllLines(Paths.get(filename))) {
                 Instruction i = new Instruction(line);
@@ -18,7 +17,7 @@ public class ProgramLoader {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new IOException();
+            throw new IOException("Error reading file");
         }
 
         return program;

@@ -6,7 +6,7 @@ public class Instruction {
     private int[] body;
 
 
-    public Instruction(String body) throws InstructionFormatException {
+    public Instruction(String instr) throws InstructionFormatException {
         /* example program:
             L0  -   1   1   2
             L1  +   0   0
@@ -15,18 +15,22 @@ public class Instruction {
             L4  H
          */
 
-        String[] args = body.split("\t");
+        String[] args = instr.split("\\s+");
 
         String type = args[1];
+        this.body = new int[5];
 
         switch (type) {
             case "+":
                 this.type = InstrType.ADD;
-
-
+                this.body[0] = Integer.parseInt(args[2]);
+                this.body[1] = Integer.parseInt(args[3]);
                 break;
             case "-":
                 this.type = InstrType.SUB;
+                this.body[0] = Integer.parseInt(args[2]);
+                this.body[1] = Integer.parseInt(args[3]);
+                this.body[2] = Integer.parseInt(args[4]);
                 break;
             case "H":
                 this.type = InstrType.HALT;
@@ -41,5 +45,17 @@ public class Instruction {
 
     public InstrType getType() {
         return type;
+    }
+
+    public int getRegister() {
+        return this.body[0];
+    }
+
+    public int getFirstJump() {
+        return this.body[1];
+    }
+
+    public int getSecondJump() {
+        return this.body[2];
     }
 }
