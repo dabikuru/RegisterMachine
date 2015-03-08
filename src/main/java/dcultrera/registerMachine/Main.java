@@ -5,19 +5,25 @@ import java.util.List;
 
 public class Main {
 
+    /**
+     *
+     * @param args <program file> <register file>
+     */
     public static void main(String[] args) {
-        String filename = args[0];
+        String progFile = args[0];
+        String regFile = args[1];
 
-        //regmachine.jar -p sum.csv [-r x.csv | -m 1 2 3 ... ]
         try {
-            List<Instruction> instructions = ProgramLoader.loadProgram(filename);
-            int[] regs = {0, 1, 2};
+            List<Instruction> instructions = ProgramLoader.loadProgram(progFile);
+            int[][] allRegs = ProgramLoader.loadRegisters(regFile);
 
             RM machine = new RM(instructions);
-            machine.setRegisters(regs);
 
-            machine.eval();
-            System.out.println(machine.getResult());
+            for (int[] i : allRegs) {
+                machine.setRegisters(i);
+                machine.eval();
+                System.out.println(machine.getResult());
+            }
 
         } catch (IOException | InstructionFormatException e) {
             e.printStackTrace();

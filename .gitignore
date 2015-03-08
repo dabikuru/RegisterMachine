@@ -1,6 +1,3 @@
-*.class
-out/
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -15,3 +12,6 @@ hs_err_pid*
 # IDE files
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+
+# Compiled files
+target
